@@ -7,6 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        alkatra: ['Alkatra'],
+      },
+      colors: {
+        'metal': '#1F1F29',
+        'mywhite': '#F5F0F0',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
