@@ -8,19 +8,20 @@ import { toast } from "react-hot-toast";
 export default function AddPost() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  let toastId: string;
+  const querryClient = useQueryClient();
 
   const { mutate } = useMutation(
     async (title: string) => await axios.post("/api/posts/addPost", { title }),
     {
       onError: (err) => {
         if (err instanceof AxiosError) {
-          toast.error(err?.response?.data.message)
+          toast.error(err?.response?.data.message);
         }
         setIsDisabled(false);
       },
       onSuccess: (data) => {
         toast.success("Post has been made 🔥");
+        querryClient.invalidateQueries(["posts"]);
         setTitle("");
         setIsDisabled(false);
       },
@@ -29,7 +30,7 @@ export default function AddPost() {
 
   const submitPost = async (e: React.FormEvent) => {
     e.preventDefault();
-    toastId = toast("Loading...", { icon: "⏳" });
+    toast("Loading...", { icon: "⏳" });
     setIsDisabled(true);
     mutate(title);
   };

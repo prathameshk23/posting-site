@@ -14,7 +14,7 @@ return (
 <button className="text-sm bg-mywhite text-black py-2 px-6 rounded-xl disabled:opacity-25" onClick={()=> signOut()}>
 Sign Out
 </button>
-<Link href={"/"}>
+<Link href={"/dashboard"}>
 <Image width={64} height={64} src={image} priority alt="User Image" className="w-14 rounded-full" />
 
 </Link>
